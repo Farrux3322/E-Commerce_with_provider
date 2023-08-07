@@ -1,7 +1,9 @@
 import 'package:e_commerce/constanst/theme.dart';
 import 'package:e_commerce/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce/screens/auth_ui/welcome/welcome.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:e_commerce/services/fcm.dart';
+import 'package:e_commerce/services/local_notification_service.dart';
+import 'package:e_commerce/services/news_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +12,8 @@ import 'screens/custom_bottom_bar/custom_bottom_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await initFirebase();
+  await LocalNotificationService.instance.setupFlutterNotifications();
   // Stripe.publishableKey =
   // "pk_test_51MWx8OAVMyklfe3CsjEzA1CiiY0XBTlHYbZ8jQlGtVFIwQi4aNeGv8J1HUw4rgSavMTLzTwgn0XRlwoTVRFXyu2h00mRUeWmAf123";
   // await Firebase.initializeApp(
@@ -31,15 +34,16 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'E-Commerce',
         theme: themeData,
-        home: StreamBuilder(
-          stream: FirebaseAuthHelper.instance.getAuthChange,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return const CustomBottomBar();
-            }
-            return const Welcome();
-          },
-        ),
+        home: NewsScreen()
+        // StreamBuilder(
+        //   stream: FirebaseAuthHelper.instance.getAuthChange,
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasData) {
+        //       return const CustomBottomBar();
+        //     }
+        //     return const Welcome();
+        //   },
+        // ),
       ),
     );
   }

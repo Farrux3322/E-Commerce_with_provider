@@ -185,7 +185,13 @@ class _HomeState extends State<Home> {
                     searchList[index];
                     return Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor.withOpacity(0.3),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 5,
+                          )
+                        ],
                         borderRadius:
                         BorderRadius.circular(8.0),
                       ),
@@ -261,7 +267,13 @@ class _HomeState extends State<Home> {
                     productModelList[index];
                     return Container(
                       decoration: BoxDecoration(
-                        color:Theme.of(context).primaryColor.withOpacity(0.3),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 10,
+                          )
+                        ],
+                        color:Colors.white,
                         borderRadius:
                         BorderRadius.circular(8.0),
                       ),

@@ -20,6 +20,7 @@ class AppProvider with ChangeNotifier {
   UserModel get getUserInformation => _userModel!;
 
   void addCartProduct(ProductModel productModel) {
+
     _cartProductList.add(productModel);
     notifyListeners();
   }
@@ -36,6 +37,7 @@ class AppProvider with ChangeNotifier {
 
   void addFavouriteProduct(ProductModel productModel) {
     _favouriteProductList.add(productModel);
+    print(_favouriteProductList.length);
     notifyListeners();
   }
 

@@ -38,7 +38,8 @@ class _AccountScreenState extends State<AccountScreen> {
       body: Column(
         children: [
           Expanded(
-            child: Column(
+            child: ListView(
+
               children: [
                 appProvider.getUserInformation.image == null
                     ? const Icon(
@@ -50,21 +51,25 @@ class _AccountScreenState extends State<AccountScreen> {
                   NetworkImage(appProvider.getUserInformation.image!),
                   radius: 60,
                 ),
-                Text(
-                  appProvider.getUserInformation.name,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                Center(
+                  child: Text(
+                    appProvider.getUserInformation.name,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                Text(
-                  appProvider.getUserInformation.email,
+                Center(
+                  child: Text(
+                    appProvider.getUserInformation.email,
+                  ),
                 ),
                 const SizedBox(
                   height: 12.0,
                 ),
-                SizedBox(
-                  width: 130,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 120),
                   child: PrimaryButton(
                     title: "Edit Profile",
                     onPressed: () {
