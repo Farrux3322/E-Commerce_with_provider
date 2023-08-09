@@ -16,6 +16,7 @@ Future<void> initFirebase() async {
 
   await Firebase.initializeApp();
   String? fcmToken = await FirebaseMessaging.instance.getToken();
+  print("FCM TOKEN $fcmToken");
   await FirebaseMessaging.instance.subscribeToTopic("news");
 
   // FOREGROUND MESSAGE HANDLING.
